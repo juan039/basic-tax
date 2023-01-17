@@ -3,7 +3,8 @@ const ReceiptModule = require('./modules/receipt')
 const fs = require('fs');
 const InputArr = []
 
-const allFileContents = fs.readFileSync('cases/input1.txt', 'utf-8');
+const fileName = process.argv[2] || 'cases/input1.txt'
+const allFileContents = fs.readFileSync(fileName, 'utf-8');
 allFileContents.split(/\r?\n/).forEach(line =>  {
   if (line != '') {
     InputArr.push(line)
