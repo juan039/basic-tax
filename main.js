@@ -15,5 +15,23 @@ const products = InputArr.map(item => {
   return new ProductModule(item)
 })
 
-console.log((new ReceiptModule(products)).final_text)
+const receipt = new ReceiptModule(products);
+console.log(receipt.final_text)
+
+// Create output Folder
+try {
+  if (!fs.existsSync('output')) {
+    fs.mkdirSync('output');
+  }
+} catch (err) {
+  console.error(err);
+}
+
+// Create output File
+const outputFile = fileName.split('/').slice(-1)
+try {
+  fs.writeFileSync(`output/${outputFile}`, receipt.final_text);
+} catch (err) {
+  console.error(err);
+}
 
